@@ -14,7 +14,7 @@ export const unitOwners = [
   {
     _id: "5b9b5d48-033f-4414-b15a-802e76541a2a",
     name: "Roborock Robot",
-    email, "us@roborock.com",
+    email: "us@roborock.com",
     phone: "915-225-5277",
     address: "9570 Pan American Dr.",
     address2: "dock #6",

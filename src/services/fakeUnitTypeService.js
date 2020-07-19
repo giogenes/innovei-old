@@ -61,6 +61,16 @@ export const unitTypes = [
     },
     description: "Automatic vaccuum cleaner.",
   },
+  {
+    _id: "91338e08-f48b-4535-8394-9c6ac64f3c65",
+    name: "S6+",
+    pn: "S61",
+    manufacturer: {
+      _id: "1dc3b79b-5a0d-4e7f-8a81-fec58151b9d1",
+      name: "Roborock",
+    },
+    description: "Automatic vaccuum cleaner.",
+  },
 ];
 
 export function getUnitTypes() {
