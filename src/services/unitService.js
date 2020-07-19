@@ -1,6 +1,6 @@
-import * as unitTypesApi from "./fakeUnitTypeService";
-import * as unitOwnersApi from "./fakeUnitOwnerService";
-import * as unitLocationsApi from "./fakeUnitLocationService";
+import * as unitTypesApi from "./unitTypeService";
+import * as unitOwnersApi from "./unitOwnerService";
+import * as unitLocationsApi from "./unitLocationService";
 
 const units = [
   {

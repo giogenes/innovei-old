@@ -9,7 +9,7 @@ import * as icons from "@fortawesome/free-solid-svg-icons";
 const { SearchBar } = Search;
 
 class UnitsTable extends Component {
-  sortIcon = (order) => {
+  getSortIcon = (order) => {
     if (order === "asc") return <FontAwesomeIcon icon={icons.faSortUp} />;
     if (order === "desc") return <FontAwesomeIcon icon={icons.faSortDown} />;
     return <FontAwesomeIcon icon={icons.faSort} />;
@@ -20,25 +20,25 @@ class UnitsTable extends Component {
       dataField: "type.name",
       text: "Unit Type ",
       sort: true,
-      sortCaret: this.sortIcon,
+      sortCaret: this.getSortIcon,
     },
     {
       dataField: "serialNumber",
       text: "Serial Number ",
       sort: true,
-      sortCaret: this.sortIcon,
+      sortCaret: this.getSortIcon,
     },
     {
       dataField: "owner.name",
       text: "Owner ",
       sort: true,
-      sortCaret: this.sortIcon,
+      sortCaret: this.getSortIcon,
     },
     {
       dataField: "location.name",
       text: "Location ",
       sort: true,
-      sortCaret: this.sortIcon,
+      sortCaret: this.getSortIcon,
     },
   ];
 
@@ -49,6 +49,15 @@ class UnitsTable extends Component {
     },
   ];
 
+  paginationOptions = {
+    showTotal: true,
+    alwaysShowAllBtns: true,
+  };
+
+  handleRowClick = (e, row, rowIndex) => {
+    this.props.history.push(`/units/${row._id}`);
+  };
+
   render() {
     return (
       <Toolkit
@@ -58,18 +67,17 @@ class UnitsTable extends Component {
         search
       >
         {(props) => (
-          <div>
+          <main className="container">
             <SearchBar {...props.searchProps} />
             <hr />
             <BootstrapTable
               {...props.baseProps}
               bordered={false}
-              pagination={paginationFactory({
-                showTotal: true,
-                alwaysShowAllBtns: true,
-              })}
+              pagination={paginationFactory(this.paginationOptions)}
+              hover={true}
+              rowEvents={{ onClick: this.handleRowClick }}
             />
-          </div>
+          </main>
         )}
       </Toolkit>
     );

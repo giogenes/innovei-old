@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUnits } from "../services/fakeUnitService";
+import { getUnits } from "../services/unitService";
 import UnitsTable from "./unitsTable";
 
 class Units extends Component {
@@ -15,7 +15,7 @@ class Units extends Component {
   render() {
     return (
       <div className="container">
-        <UnitsTable units={this.state.units} />
+        <UnitsTable history={this.props.history} units={this.state.units} />
       </div>
     );
   }
