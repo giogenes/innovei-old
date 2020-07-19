@@ -42,3 +42,7 @@ thead {
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Likely future */
 }
+
+.nav-tabs {
+  padding: 30px 10px 0 10px;
+}

@@ -19,12 +19,20 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
+        <ul className="navbar-nav mr-auto">
           <NavLink className="nav-item nav-link" to="/units">
             Units
           </NavLink>
           <NavLink className="nav-item nav-link" to="/not-found">
             Features
+          </NavLink>
+        </ul>
+        <ul className="navbar-nav">
+          <NavLink className="nav-item nav-link" to="/help">
+            Help
+          </NavLink>
+          <NavLink className="nav-item nav-link" to="/Login">
+            Login
           </NavLink>
         </ul>
       </div>

@@ -29,6 +29,51 @@ const units = [
       country: "USA",
     },
     location: { _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970", name: "A Stock" },
+    parts: [
+      {
+        _id: "2c55cac4-1bc5-472b-9d55-cdcf2b63d584",
+        name: "Arm Assembly 1",
+        pn: "43130001-01",
+        desc: "2nd generation arm for the PowerEgg",
+        unitType: {
+          _id: "17463019-1abe-40e0-a14e-43ec96798291",
+          name: "PowerEgg",
+          pn: "PEG10",
+          manufacturer: {
+            _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
+            name: "Powervision",
+          },
+          description: "Egged shaped flying drone.",
+        },
+      },
+      {
+        _id: "0c3f9003-3346-4df9-ae77-ff3389437443",
+        name: "Arm Assembly 2",
+        pn: "43130002-01",
+        desc: "2nd generation arm for the PowerEgg",
+        unitType: {
+          _id: "17463019-1abe-40e0-a14e-43ec96798291",
+          name: "PowerEgg",
+          pn: "PEG10",
+          manufacturer: {
+            _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
+            name: "Powervision",
+          },
+          description: "Egged shaped flying drone.",
+        },
+      },
+    ],
+    notes: [
+      {
+        author: "Giovanni Leon",
+        date: Date.now(),
+        location: {
+          _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
+          name: "A Stock",
+        },
+        content: "Unit was fixed and put into A Stock. Ready to sell",
+      },
+    ],
   },
   {
     _id: "f25492a6-aeba-4863-9cda-994b21c55340",
@@ -59,6 +104,8 @@ const units = [
       _id: "966e0d82-6822-45cb-af9d-766edaeaa741",
       name: "Under Repair",
     },
+    parts: [],
+    notes: [],
   },
   {
     _id: "4e22ca03-b5f2-4f9d-9a5c-81501746aa55",
@@ -90,6 +137,8 @@ const units = [
       _id: "966e0d82-6822-45cb-af9d-766edaeaa741",
       name: "Under Repair",
     },
+    parts: [],
+    notes: [],
   },
   {
     _id: "e751c6b0-9d13-45fe-a5d1-da1abfbf23c8",
@@ -120,6 +169,8 @@ const units = [
       _id: "6eca5ae7-60ee-46aa-b91b-64348cca4b4b",
       name: "Pending Parts",
     },
+    parts: [],
+    notes: [],
   },
   {
     _id: "778b13fa-1602-416d-ba1c-dac0556f6a0e",
@@ -150,6 +201,8 @@ const units = [
       _id: "e84cc278-d7ce-404f-99ad-d6d2d07be299",
       name: "B Stock",
     },
+    parts: [],
+    notes: [],
   },
 ];
 
