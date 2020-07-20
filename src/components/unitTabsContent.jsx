@@ -8,9 +8,9 @@ const UnitTabsContent = (props) => {
         {props.selectedKey === "about" && (
           <div>
             <ul id="progress">
-              <li>Step 1</li>
-              <li class="">Step 2</li>
-              <li class="active">Step 3</li>
+              <li>Pending Diagnostics</li>
+              <li class="">Under Diagnostics</li>
+              <li class="active">Under Repair</li>
             </ul>
             <h5>
               Name <span style={{ fontWeight: "normal" }}>{owner.name}</span>

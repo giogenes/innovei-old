@@ -10,8 +10,9 @@ const unitHeader = ({ unit }) => {
         {unit.serialNumber}
       </h1>
       <p>
-        {unit.type.manufacturer.name} {unit.type.pn} - {unit.type.name} |
-        Location - {unit.location.name}
+        {unit.type.manufacturer.name} {unit.type.name} - {unit.type.pn} |
+        Location -{" "}
+        <span style={{ fontWeight: "bold" }}>{unit.location.name}</span>
       </p>
     </Fragment>
   );
