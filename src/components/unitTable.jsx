@@ -8,7 +8,7 @@ import * as icons from "@fortawesome/free-solid-svg-icons";
 
 const { SearchBar } = Search;
 
-class UnitsTable extends Component {
+class UnitTable extends Component {
   getSortIcon = (order) => {
     if (order === "asc") return <FontAwesomeIcon icon={icons.faSortUp} />;
     if (order === "desc") return <FontAwesomeIcon icon={icons.faSortDown} />;
@@ -29,13 +29,13 @@ class UnitsTable extends Component {
       sortCaret: this.getSortIcon,
     },
     {
-      dataField: "owner.name",
-      text: "Owner ",
+      dataField: "ticket.type",
+      text: "Type ",
       sort: true,
       sortCaret: this.getSortIcon,
     },
     {
-      dataField: "location.name",
+      dataField: "ticket.location.name",
       text: "Location ",
       sort: true,
       sortCaret: this.getSortIcon,
@@ -84,4 +84,4 @@ class UnitsTable extends Component {
   }
 }
 
-export default UnitsTable;
+export default UnitTable;

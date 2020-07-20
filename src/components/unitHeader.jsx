@@ -12,7 +12,7 @@ const unitHeader = ({ unit }) => {
       <p>
         {unit.type.manufacturer.name} {unit.type.name} - {unit.type.pn} |
         Location -{" "}
-        <span style={{ fontWeight: "bold" }}>{unit.location.name}</span>
+        <span style={{ fontWeight: "bold" }}>{unit.ticket.location.name}</span>
       </p>
     </Fragment>
   );

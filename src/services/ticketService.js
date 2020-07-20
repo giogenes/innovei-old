@@ -1,8 +1,8 @@
 export const tickets = [
   {
     _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
-    id: "0001",
-    externalId: "17653",
+    id: "RMA 17653",
+    type: "RMA",
     owner: {
       _id: "d41fa854-4ba6-4825-a593-36d243b63680",
       name: "John Doe",
@@ -21,17 +21,14 @@ export const tickets = [
       super: {
         _id: "40a712b1-8652-46c6-92f1-fd8706177443",
         name: "Under Diagnostics",
-        super: {
-          _id: "7d6571ba-c2bc-4958-8350-6667414ffafd",
-          name: "External Repair",
-          super: {},
-        },
+        super: {},
       },
     },
   },
   {
     _id: "1dc3b79b-5a0d-4e7f-8a81-fec58151b9d1",
     id: "0002",
+    type: "New Product",
     externalId: "",
     owner: {
       _id: "5cb3712d-cd32-42cc-9933-e6e8b7df3a61",

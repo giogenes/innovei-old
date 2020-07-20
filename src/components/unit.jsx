@@ -12,8 +12,32 @@ class Unit extends Component {
         manufacturer: {},
       },
       serialNumber: "",
-      owner: {},
-      location: {},
+      ticket: {
+        id: "",
+        owner: {
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          address2: "",
+          city: "",
+          state: "",
+          zipCode: "",
+          country: "",
+        },
+        location: {
+          name: "",
+          super: {
+            _id: "",
+            name: "",
+            super: {
+              _id: "",
+              name: "",
+              super: {},
+            },
+          },
+        },
+      },
       parts: [],
       notes: [],
     },
@@ -22,7 +46,8 @@ class Unit extends Component {
   };
 
   tabs = [
-    { key: "about", name: "About" },
+    { key: "ticket", name: "Ticket" },
+    { key: "action", name: "Action" },
     { key: "parts", name: "Parts" },
   ];
 
@@ -70,7 +95,7 @@ class Unit extends Component {
       <div className="container-fluid">
         <UnitHeader unit={unit} />
         <UnitTabs
-          defaultActiveKey="about"
+          defaultActiveKey="ticket"
           onSelect={this.handleTabChange}
           tabs={this.tabs}
         />

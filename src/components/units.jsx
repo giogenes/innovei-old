@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getUnits } from "../services/unitService";
-import UnitsTable from "./unitsTable";
+import UnitTable from "./unitTable";
 
 class Units extends Component {
   state = {
@@ -15,7 +15,7 @@ class Units extends Component {
   render() {
     return (
       <div className="container">
-        <UnitsTable history={this.props.history} units={this.state.units} />
+        <UnitTable history={this.props.history} units={this.state.units} />
       </div>
     );
   }

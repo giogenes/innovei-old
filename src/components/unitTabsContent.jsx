@@ -5,7 +5,8 @@ const UnitTabsContent = (props) => {
   return (
     <div>
       <div className="container-fluid" style={{ paddingTop: 30 }}>
-        {props.selectedKey === "about" && (
+        {props.selectedKey === "ticket" && <div></div>}
+        {props.selectedKey === "action" && (
           <div>
             <ul id="progress">
               <li>Pending Diagnostics</li>
