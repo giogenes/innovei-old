@@ -12,15 +12,6 @@ const UnitTabsContent = (props) => {
               <li class="">Under Diagnostics</li>
               <li class="active">Under Repair</li>
             </ul>
-            <h5>
-              Name <span style={{ fontWeight: "normal" }}>{owner.name}</span>
-            </h5>
-            <h5>
-              Address{" "}
-              <span style={{ fontWeight: "normal" }}>
-                {owner.address} {owner.address2}
-              </span>
-            </h5>
           </div>
         )}
         {props.selectedKey === "parts" && (
