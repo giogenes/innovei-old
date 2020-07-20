@@ -4,7 +4,7 @@ const unitHeader = ({ unit }) => {
   return (
     <Fragment>
       <h1>
-        <span class="text-muted" style={{ fontWeight: "normal" }}>
+        <span className="text-muted" style={{ fontWeight: "normal" }}>
           Unit{" "}
         </span>
         {unit.serialNumber}

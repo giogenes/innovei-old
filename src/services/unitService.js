@@ -66,12 +66,30 @@ const units = [
     notes: [
       {
         author: "Giovanni Leon",
-        date: Date.now(),
+        date: new Date(2020, 9, 17, 3, 24, 0),
         location: {
           _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
           name: "A Stock",
         },
         content: "Unit was fixed and put into A Stock. Ready to sell",
+      },
+      {
+        author: "Eddie Delgado",
+        date: new Date(2020, 10, 17, 3, 24, 0),
+        location: {
+          _id: "966e0d82-6822-45cb-af9d-766edaeaa741",
+          name: "Under Repair",
+        },
+        content: "Under Repair",
+      },
+      {
+        author: "Eddie Delgado",
+        date: new Date(2020, 11, 17, 12, 0, 0),
+        location: {
+          _id: "6eca5ae7-60ee-46aa-b91b-64348cca4b4b",
+          name: "Pending Parts",
+        },
+        content: "Needs gimbal. Pending parts",
       },
     ],
   },
