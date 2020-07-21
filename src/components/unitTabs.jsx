@@ -18,7 +18,7 @@ class UnitTabs extends Component {
               to={`/units/${unitId}/${tab.key}`}
               onClick={() => this.props.onTabChange(tab.key)}
             >
-              Ticket
+              {tab.name}
             </Link>
           </li>
         ))}

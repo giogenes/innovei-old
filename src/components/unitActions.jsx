@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 const UnitActions = ({ unit }) => {
   return (
-    <div className="mt-5">
+    <div className="">
       <ul id="progress">
         <li>Pending Diagnostics</li>
         <li className="">Under Diagnostics</li>
@@ -10,7 +10,7 @@ const UnitActions = ({ unit }) => {
       </ul>
 
       {unit.ticket.location.super.name}
-      <form class="col-sm-5" action="">
+      <form className="col-sm-5" action="">
         <div className="form-group">
           <label htmlFor=""></label>
           <select name="" id="" className="form-control">

@@ -68,6 +68,10 @@ thead {
   }
 }
 
+.unit-tab-content {
+  margin-bottom: 7rem;
+}
+
 .unbold {
   font-weight: normal;
 }
