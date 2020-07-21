@@ -1,16 +1,30 @@
-import React from "react";
-import { Nav } from "react-bootstrap";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-const UnitTabs = ({ defaultActiveKey, onSelect, tabs }) => {
-  return (
-    <Nav variant="tabs" defaultActiveKey={defaultActiveKey} onSelect={onSelect}>
-      {tabs.map((tab) => (
-        <Nav.Item key={tab.key}>
-          <Nav.Link eventKey={tab.key}>{tab.name}</Nav.Link>
-        </Nav.Item>
-      ))}
-    </Nav>
-  );
-};
+class UnitTabs extends Component {
+  returnTabLinkClass(selectedKey, tabKey) {
+    if (selectedKey === tabKey) return "nav-link active";
+    return "nav-link";
+  }
+
+  render() {
+    const { tabs, unitId, currentTabKey } = this.props;
+    return (
+      <ul className="nav nav-tabs">
+        {tabs.map((tab) => (
+          <li key={tab.key} className="nav-item">
+            <Link
+              className={this.returnTabLinkClass(currentTabKey, tab.key)}
+              to={`/units/${unitId}/${tab.key}`}
+              onClick={() => this.props.onTabChange(tab.key)}
+            >
+              Ticket
+            </Link>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
 
 export default UnitTabs;

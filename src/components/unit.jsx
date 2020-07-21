@@ -43,7 +43,7 @@ class Unit extends Component {
       parts: [],
       timeline: [],
     },
-    selectedKey: "ticket",
+    currentTabKey: "ticket",
     timelineInputValue: "",
   };
 
@@ -60,8 +60,8 @@ class Unit extends Component {
     this.setState({ unit });
   }
 
-  handleTabChange = (selectedKey) => {
-    this.setState({ selectedKey });
+  handleTabChange = (key) => {
+    this.setState({ currentTabKey: key });
   };
 
   handleTimelineChange = (event) => {
@@ -84,18 +84,24 @@ class Unit extends Component {
   };
 
   render() {
-    const { unit, selectedKey } = this.state;
+    const { unit, currentTabKey } = this.state;
     return (
       <div className="container-fluid">
         <UnitHeader unit={unit} />
         <UnitTabs
           defaultActiveKey="ticket"
-          onSelect={this.handleTabChange}
+          currentTabKey={currentTabKey}
+          unitId={this.props.match.params.id}
+          onTabChange={this.handleTabChange}
           tabs={this.tabs}
         />
         <div className="row">
           <div className="col-md-9">
-            <UnitTabsContent selectedKey={selectedKey} unit={unit} />
+            <UnitTabsContent
+              currentTabKey={this.currentTabKey}
+              id={this.props.match.params.id}
+              unit={unit}
+            />
           </div>
           <div className="col-md-3"></div>
         </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const UnitTicket = ({ unit }) => {
   return (
-    <div className="container">
+    <div className="container pt-4">
       <h2>
         {unit.ticket.type} <span className="unbold">{unit.ticket.id}</span>
       </h2>
@@ -52,7 +52,15 @@ const UnitTicket = ({ unit }) => {
       <div className="pt-5 pb-5">
         <h2>Options</h2>
         <hr />
-        <button className="btn btn-warning">Replace Unit</button>
+        <div className="pl-4">
+          <button
+            className="btn btn-warning"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Replace Unit
+          </button>
+        </div>
       </div>
     </div>
   );

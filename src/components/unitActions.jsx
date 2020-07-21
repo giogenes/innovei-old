@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 const UnitActions = ({ unit }) => {
   return (
-    <Fragment>
+    <div className="mt-5">
       <ul id="progress">
         <li>Pending Diagnostics</li>
         <li className="">Under Diagnostics</li>
@@ -22,7 +22,7 @@ const UnitActions = ({ unit }) => {
           </select>
         </div>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

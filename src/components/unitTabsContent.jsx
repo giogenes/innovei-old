@@ -1,16 +1,22 @@
 import React from "react";
 import UnitTicket from "./unitTicket";
 import UnitActions from "./unitActions";
+import { Route, Redirect } from "react-router-dom";
 
 const UnitTabsContent = (props) => {
-  const { unit } = props;
-  console.log(props.selectedKey);
+  const { unit, id } = props;
+
   return (
     <div>
-      <div className="container-fluid" style={{ paddingTop: 30 }}>
-        {props.selectedKey === "ticket" && <UnitTicket unit={unit} />}
-        {props.selectedKey === "actions" && <UnitActions unit={unit} />}
-      </div>
+      <Route
+        path={`/units/${id}/ticket`}
+        render={(props) => <UnitTicket {...props} unit={unit} />}
+      />
+      <Route
+        path={`/units/${id}/actions`}
+        render={(props) => <UnitActions {...props} unit={unit} />}
+      />
+      <Redirect to={`/units/${id}/ticket`} />
     </div>
   );
 };

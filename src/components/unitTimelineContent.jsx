@@ -10,7 +10,7 @@ const UnitTimelineContent = ({ timeline }) => {
         </h2>
       )}
       {timeline.map((t) => (
-        <div>
+        <div key={t.date + t.content}>
           {t.type === "note" && (
             <div key={t.date + t.content} className="card bg-light">
               <div className="card-body">
