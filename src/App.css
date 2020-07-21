@@ -48,6 +48,30 @@ thead {
   margin-bottom: 20px;
 }
 
+.timeline-style {
+  position: relative;
+  margin-bottom: 6rem;
+  padding-top: 1rem;
+  border: none;
+}
+
+@media only screen and (min-width: 720px) {
+  .timeline-style {
+    position: absolute;
+    top: 280px;
+    width: 25%;
+    right: 0;
+    bottom: 70px;
+    overflow-y: scroll;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+  }
+}
+
+.unbold {
+  font-weight: normal;
+}
+
 textarea {
   resize: none !important;
 }

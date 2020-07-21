@@ -1,28 +1,15 @@
 import React from "react";
+import UnitTicket from "./unitTicket";
+import UnitActions from "./unitActions";
 
 const UnitTabsContent = (props) => {
-  const { owner, parts } = props.unit;
+  const { unit } = props;
+  console.log(props.selectedKey);
   return (
     <div>
       <div className="container-fluid" style={{ paddingTop: 30 }}>
-        {props.selectedKey === "ticket" && <div></div>}
-        {props.selectedKey === "action" && (
-          <div>
-            <ul id="progress">
-              <li>Pending Diagnostics</li>
-              <li class="">Under Diagnostics</li>
-              <li class="active">Under Repair</li>
-            </ul>
-          </div>
-        )}
-        {props.selectedKey === "parts" && (
-          <div className="container">
-            <br />
-            {parts.map((part) => (
-              <p key={part._id}>{part.name}</p>
-            ))}
-          </div>
-        )}
+        {props.selectedKey === "ticket" && <UnitTicket unit={unit} />}
+        {props.selectedKey === "actions" && <UnitActions />}
       </div>
     </div>
   );

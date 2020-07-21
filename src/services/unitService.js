@@ -18,7 +18,7 @@ const units = [
     serialNumber: "110AAAA7460350",
     ticket: {
       _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
-      id: "RMA 17653",
+      id: "17653",
       type: "RMA",
       owner: {
         _id: "d41fa854-4ba6-4825-a593-36d243b63680",
@@ -41,6 +41,12 @@ const units = [
           super: {},
         },
       },
+    },
+    pallet: {
+      _id: "40935ea6-495b-435b-898d-8ad2c3570bb3",
+      id: "INNPLLT072020003",
+      desc: "Gio's Tech Area",
+      bay: 3,
     },
     parts: [
       {
@@ -116,6 +122,142 @@ const units = [
         content: "Needs gimbal. Pending parts",
       },
     ],
+  },
+  {
+    _id: "a54050aa-909a-4f37-8030-11958e99872c",
+    type: {
+      _id: "ef2bb21a-d986-45ff-95d4-e7acd06dd24c",
+      name: "PowerRay Wizard",
+      pn: "PRW10",
+      manufacturer: {
+        _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
+        name: "Powervision",
+      },
+      description:
+        "Underwater teathered drone with mobile carrying case, and various accessories.",
+    },
+    serialNumber: "110CAAA7570456",
+    ticket: {
+      _id: "1dc3b79b-5a0d-4e7f-8a81-fec58151b9d1",
+      id: "0001",
+      type: "New Product",
+      externalId: "",
+      owner: {
+        _id: "5cb3712d-cd32-42cc-9933-e6e8b7df3a61",
+        name: "Powervision Robot",
+        email: "us@powervision.me",
+        phone: "915-225-5277",
+        address: "9570 Pan American Dr.",
+        address2: "dock #6",
+        city: "El Paso",
+        state: "TX",
+        zipCode: "79927",
+        country: "USA",
+      },
+      location: {
+        _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
+        name: "A Stock",
+        super: {},
+      },
+    },
+    pallet: {
+      _id: "22cbc806-f4f6-4b26-a3c0-bbd19c1a4c0b",
+      id: "INNPLLT072020002",
+      desc: "A Stock PowerRay Wizards",
+      bay: 2,
+    },
+    parts: [
+      {
+        _id: "4fb2e3b7-3776-41e3-ad9a-c6c1b25c506a",
+        name: "Powerseeker",
+        pn: "43130002-00",
+        desc: "Sonar detection accessory",
+        unitTypes: [
+          {
+            _id: "7bfb593e-def0-4cd9-a85f-123cd6bdd2f6",
+            name: "PowerRay Explorer",
+            pn: "PRE10",
+            manufacturer: {
+              _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
+              name: "Powervision",
+            },
+            description:
+              "Underwater teathered drone with foam case, and core accessories.",
+          },
+          {
+            _id: "ef2bb21a-d986-45ff-95d4-e7acd06dd24c",
+            name: "PowerDolphin Wizard",
+            pn: "PDW10",
+            manufacturer: {
+              _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
+              name: "Powervision",
+            },
+            description: "Above water wireless drone with various accessories.",
+          },
+        ],
+      },
+    ],
+    notes: [
+      {
+        author: "Andy Mendoza",
+        date: new Date(2020, 9, 17, 3, 24, 0),
+        location: {
+          _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
+          name: "A Stock",
+          super: {},
+        },
+        content: "Unit recieved",
+      },
+    ],
+  },
+  {
+    _id: "55b86d72-4570-471e-bb1f-c9d74b22381b",
+    type: {
+      _id: "91338e08-f48b-4535-8394-9c6ac64f3c65",
+      name: "S6+",
+      pn: "S61",
+      manufacturer: {
+        _id: "1dc3b79b-5a0d-4e7f-8a81-fec58151b9d1",
+        name: "Roborock",
+      },
+      description: "Automatic vaccuum cleaner.",
+    },
+    serialNumber: "R0703S93501355",
+    ticket: {
+      _id: "1dc3b79b-5a0d-4e7f-8a81-fec58151b9d1",
+      id: "0001",
+      type: "RMA",
+      externalId: "",
+      owner: {
+        _id: "5cb3712d-cd32-42cc-9933-e6e8b7df3a61",
+        name: "Powervision Robot",
+        email: "us@powervision.me",
+        phone: "915-225-5277",
+        address: "9570 Pan American Dr.",
+        address2: "dock #6",
+        city: "El Paso",
+        state: "TX",
+        zipCode: "79927",
+        country: "USA",
+      },
+      location: {
+        _id: "c0e6093c-23c4-4335-af68-c835f6fbc663",
+        name: "Pending Manufacturer",
+        super: {
+          _id: "40a712b1-8652-46c6-92f1-fd8706177443",
+          name: "Under Diagnostics",
+          super: {},
+        },
+      },
+    },
+    pallet: {
+      _id: "719ae29d-a204-4cf5-a5ec-ccf3e750ca09",
+      id: "INNPLLT072020004",
+      desc: "Eddie's Tech Area",
+      bay: 4,
+    },
+    parts: [],
+    notes: [],
   },
 ];
 

@@ -28,26 +28,28 @@ class Unit extends Component {
         location: {
           name: "",
           super: {
-            _id: "",
             name: "",
             super: {
-              _id: "",
               name: "",
-              super: {},
             },
           },
         },
       },
+      pallet: {
+        id: "",
+        desc: "",
+        bay: null,
+      },
       parts: [],
       notes: [],
     },
-    selectedKey: "about",
+    selectedKey: "ticket",
     timelineInputValue: "",
   };
 
   tabs = [
     { key: "ticket", name: "Ticket" },
-    { key: "action", name: "Action" },
+    { key: "actions", name: "Actions" },
     { key: "parts", name: "Parts" },
   ];
 
@@ -73,20 +75,11 @@ class Unit extends Component {
 
     note.author = "Giovanni Leon";
     note.date = new Date();
-    note.location = this.state.unit.location;
+    note.location = this.state.unit.ticket.location;
     note.content = this.state.timelineInputValue;
 
     unit.notes.unshift(note);
     this.setState({ unit, timelineInputValue: "" });
-  };
-
-  timelineStyle = {
-    position: "absolute",
-    top: "280px",
-    width: "25%",
-    right: "0",
-    bottom: "60px",
-    overflowY: "scroll",
   };
 
   render() {
@@ -105,7 +98,7 @@ class Unit extends Component {
           </div>
           <div className="col-md-3"></div>
         </div>
-        <div style={this.timelineStyle} className="border-left">
+        <div className="border-left timeline-style">
           <UnitTimeline
             timelineInputValue={this.state.timelineInputValue}
             onChange={this.handleTimelineChange}

@@ -1,7 +1,7 @@
 export const tickets = [
   {
     _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
-    id: "RMA 17653",
+    id: "17653",
     type: "RMA",
     owner: {
       _id: "d41fa854-4ba6-4825-a593-36d243b63680",
@@ -40,6 +40,29 @@ export const tickets = [
       city: "El Paso",
       state: "TX",
       zipCode: "79927",
+      country: "USA",
+    },
+    location: {
+      _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
+      name: "A Stock",
+      super: {},
+    },
+  },
+  {
+    _id: "f3849ad7-5be1-46c8-99f5-1465042dfb70",
+    id: "0003",
+    type: "RMA",
+    externalId: "",
+    owner: {
+      _id: "a0f1a9b0-1619-443f-955b-6d1bdabb0427",
+      name: "Jane Doe",
+      email: "jane.doe@domain.com",
+      phone: "098-765-4321",
+      address: "321 Elm St.",
+      address2: "Apt 789",
+      city: "El Paso",
+      state: "TX",
+      zipCode: "79912",
       country: "USA",
     },
     location: {

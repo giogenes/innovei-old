@@ -35,6 +35,18 @@ export const unitOwners = [
     zipCode: "79936",
     country: "USA",
   },
+  {
+    _id: "a0f1a9b0-1619-443f-955b-6d1bdabb0427",
+    name: "Jane Doe",
+    email: "jane.doe@domain.com",
+    phone: "098-765-4321",
+    address: "321 Elm St.",
+    address2: "Apt 789",
+    city: "El Paso",
+    state: "TX",
+    zipCode: "79912",
+    country: "USA",
+  },
 ];
 
 export function getUnitOwners() {
