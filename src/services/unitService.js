@@ -53,6 +53,7 @@ const units = [
         _id: "2c55cac4-1bc5-472b-9d55-cdcf2b63d584",
         name: "Arm Assembly 1",
         pn: "43130001-01",
+        amount: 1,
         desc: "2nd generation arm for the PowerEgg",
         unitTypes: [
           {
@@ -71,6 +72,7 @@ const units = [
         _id: "0c3f9003-3346-4df9-ae77-ff3389437443",
         name: "Arm Assembly 2",
         pn: "43130002-01",
+        amount: 1,
         desc: "2nd generation arm for the PowerEgg",
         unitTypes: [
           {
@@ -86,9 +88,10 @@ const units = [
         ],
       },
     ],
-    notes: [
+    timeline: [
       {
         author: "Giovanni Leon",
+        type: "note",
         date: new Date(2020, 9, 17, 3, 24, 0),
         location: {
           _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
@@ -98,7 +101,19 @@ const units = [
         content: "Unit was fixed and put into A Stock. Ready to sell",
       },
       {
+        author: "",
+        type: "movement",
+        date: new Date(2020, 9, 16, 4, 24, 0),
+        location: {
+          _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
+          name: "A Stock",
+          super: {},
+        },
+        content: "",
+      },
+      {
         author: "Eddie Delgado",
+        type: "note",
         date: new Date(2020, 10, 17, 3, 24, 0),
         location: {
           _id: "966e0d82-6822-45cb-af9d-766edaeaa741",
@@ -109,6 +124,7 @@ const units = [
       },
       {
         author: "Eddie Delgado",
+        type: "note",
         date: new Date(2020, 11, 17, 12, 0, 0),
         location: {
           _id: "4e075f22-b655-4c9f-8a91-8572a7aaf9fe",
@@ -171,6 +187,7 @@ const units = [
         _id: "4fb2e3b7-3776-41e3-ad9a-c6c1b25c506a",
         name: "Powerseeker",
         pn: "43130002-00",
+        amount: 1,
         desc: "Sonar detection accessory",
         unitTypes: [
           {
@@ -197,9 +214,10 @@ const units = [
         ],
       },
     ],
-    notes: [
+    timeline: [
       {
         author: "Andy Mendoza",
+        type: "note",
         date: new Date(2020, 9, 17, 3, 24, 0),
         location: {
           _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
@@ -257,7 +275,7 @@ const units = [
       bay: 4,
     },
     parts: [],
-    notes: [],
+    timeline: [],
   },
 ];
 

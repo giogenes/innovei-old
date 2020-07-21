@@ -9,7 +9,7 @@ const UnitTabsContent = (props) => {
     <div>
       <div className="container-fluid" style={{ paddingTop: 30 }}>
         {props.selectedKey === "ticket" && <UnitTicket unit={unit} />}
-        {props.selectedKey === "actions" && <UnitActions />}
+        {props.selectedKey === "actions" && <UnitActions unit={unit} />}
       </div>
     </div>
   );

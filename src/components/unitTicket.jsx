@@ -7,16 +7,16 @@ const UnitTicket = ({ unit }) => {
         {unit.ticket.type} <span className="unbold">{unit.ticket.id}</span>
       </h2>
       <div className="row pt-4">
-        <div className="col-sm-4">
+        <div className="col-md-4">
           <img
             alt=""
-            src="https://via.placeholder.com/200"
+            src="https://res.cloudinary.com/djuytm4lm/image/upload/v1595347194/shipping-box_kwg7wz.png"
             className="rounded mx-auto d-block pb-3"
           />
         </div>
-        <div className="col-sm-8">
+        <div className="col-lg-8">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-lg-6">
               <div>
                 <h5>
                   Name <span className="unbold">{unit.ticket.owner.name}</span>
@@ -48,6 +48,11 @@ const UnitTicket = ({ unit }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="pt-5 pb-5">
+        <h2>Options</h2>
+        <hr />
+        <button className="btn btn-warning">Replace Unit</button>
       </div>
     </div>
   );

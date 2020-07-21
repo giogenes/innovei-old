@@ -3,7 +3,7 @@ import UnitTimelineForm from "./unitTimelineForm";
 import UnitTimelineContent from "./unitTimelineContent";
 
 const unitTimeline = ({ unit, timelineInputValue, onChange, onSubmit }) => {
-  const { notes } = unit;
+  const { timeline } = unit;
 
   return (
     <div className="ml-2 mr-3">
@@ -13,7 +13,7 @@ const unitTimeline = ({ unit, timelineInputValue, onChange, onSubmit }) => {
         onChange={onChange}
         onSubmit={onSubmit}
       />
-      <UnitTimelineContent notes={notes} />
+      <UnitTimelineContent timeline={timeline} />
     </div>
   );
 };

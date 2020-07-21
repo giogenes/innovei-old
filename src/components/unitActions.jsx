@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const UnitActions = () => {
+const UnitActions = ({ unit }) => {
   return (
     <Fragment>
       <ul id="progress">
@@ -8,6 +8,8 @@ const UnitActions = () => {
         <li className="">Under Diagnostics</li>
         <li className="active">Under Repair</li>
       </ul>
+
+      {unit.ticket.location.super.name}
       <form class="col-sm-5" action="">
         <div className="form-group">
           <label htmlFor=""></label>

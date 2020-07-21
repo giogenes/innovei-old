@@ -3,6 +3,7 @@ export const parts = [
     _id: "2c55cac4-1bc5-472b-9d55-cdcf2b63d584",
     name: "Arm Assembly 1",
     pn: "43130001-01",
+    amount: 21,
     desc: "2nd generation arm for the PowerEgg",
     unitTypes: [
       {
@@ -21,6 +22,7 @@ export const parts = [
     _id: "0c3f9003-3346-4df9-ae77-ff3389437443",
     name: "Arm Assembly 2",
     pn: "43130002-01",
+    amount: 21,
     desc: "2nd generation arm for the PowerEgg",
     unitTypes: [
       {
@@ -39,6 +41,7 @@ export const parts = [
     _id: "4fb2e3b7-3776-41e3-ad9a-c6c1b25c506a",
     name: "Powerseeker",
     pn: "43130002-00",
+    amount: 23,
     desc: "Sonar detection accessory",
     unitTypes: [
       {

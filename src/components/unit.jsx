@@ -41,7 +41,7 @@ class Unit extends Component {
         bay: null,
       },
       parts: [],
-      notes: [],
+      timeline: [],
     },
     selectedKey: "ticket",
     timelineInputValue: "",
@@ -71,14 +71,15 @@ class Unit extends Component {
   handleTimelineSubmit = (event) => {
     event.preventDefault();
     let unit = { ...this.state.unit };
-    let note = {};
+    let timelineItem = {};
 
-    note.author = "Giovanni Leon";
-    note.date = new Date();
-    note.location = this.state.unit.ticket.location;
-    note.content = this.state.timelineInputValue;
+    timelineItem.author = "Giovanni Leon";
+    timelineItem.type = "note";
+    timelineItem.date = new Date();
+    timelineItem.location = this.state.unit.ticket.location;
+    timelineItem.content = this.state.timelineInputValue;
 
-    unit.notes.unshift(note);
+    unit.timeline.unshift(timelineItem);
     this.setState({ unit, timelineInputValue: "" });
   };
 
