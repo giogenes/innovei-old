@@ -22,7 +22,7 @@ export const parts = [
     _id: "0c3f9003-3346-4df9-ae77-ff3389437443",
     name: "Arm Assembly 2",
     pn: "43130002-01",
-    amount: 21,
+    amount: 1,
     desc: "2nd generation arm for the PowerEgg",
     unitTypes: [
       {
@@ -72,3 +72,15 @@ export const parts = [
 export function getParts() {
   return parts.filter((p) => p);
 }
+
+export function getPartsByUnitTypeId(unitTypeId) {
+  return parts.filter(
+    (p) => p.unitTypes.map((type) => type._id === unitTypeId)[0]
+  );
+}
+
+export function getPart(id) {
+  return parts.filter((p) => p._id === id)[0];
+}
+
+export function removePart(part) {}

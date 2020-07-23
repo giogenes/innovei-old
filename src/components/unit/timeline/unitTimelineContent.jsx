@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import * as dateService from "./../services/dateService";
+import * as dateService from "../../../services/dateService";
 
 const UnitTimelineContent = ({ timeline }) => {
   return (

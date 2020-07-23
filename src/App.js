@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Units from "./components/units";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
-import Unit from "./components/unit";
+import Unit from "./components/unit/unit";
 import { Switch, Route, Redirect } from "react-router-dom";
 import NotFound from "./components/notFound";
 
