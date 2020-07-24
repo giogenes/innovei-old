@@ -56,14 +56,25 @@ export const parts = [
           "Underwater teathered drone with foam case, and core accessories.",
       },
       {
-        _id: "ef2bb21a-d986-45ff-95d4-e7acd06dd24c",
-        name: "PowerDolphin Wizard",
-        pn: "PDW10",
+        _id: "7bfb593e-def0-4cd9-a85f-123cd6bdd2f6",
+        name: "PowerDolphin Explorer",
+        pn: "PWE10",
         manufacturer: {
           _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
           name: "Powervision",
         },
-        description: "Above water wireless drone with various accessories.",
+        description: "Above water wireless drone with core accessories.",
+      },
+      {
+        _id: "ef2bb21a-d986-45ff-95d4-e7acd06dd24c",
+        name: "PowerRay Wizard",
+        pn: "PRW10",
+        manufacturer: {
+          _id: "e549fdaa-a0b5-42f0-acc0-4baea7b8ecd6",
+          name: "Powervision",
+        },
+        description:
+          "Underwater teathered drone with mobile carrying case, and various accessories.",
       },
     ],
   },
@@ -74,9 +85,10 @@ export function getParts() {
 }
 
 export function getPartsByUnitTypeId(unitTypeId) {
-  return parts.filter(
-    (p) => p.unitTypes.map((type) => type._id === unitTypeId)[0]
-  );
+  return parts.filter((p) => {
+    const parts = p.unitTypes.filter((type) => type._id === unitTypeId)[0];
+    return parts;
+  });
 }
 
 export function getPart(id) {

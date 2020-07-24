@@ -117,8 +117,8 @@ const units = [
     ],
     timeline: [
       {
-        author: "Giovanni Leon",
         type: "note",
+        author: "Giovanni Leon",
         date: new Date(2020, 9, 17, 3, 24, 0),
         location: {
           _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",

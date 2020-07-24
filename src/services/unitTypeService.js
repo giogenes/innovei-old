@@ -32,7 +32,7 @@ export const unitTypes = [
       "Underwater teathered drone with foam case, and core accessories.",
   },
   {
-    _id: "ef2bb21a-d986-45ff-95d4-e7acd06dd24c",
+    _id: "406c1721-100c-444b-b08c-4c0bafe54950",
     name: "PowerDolphin Wizard",
     pn: "PDW10",
     manufacturer: {
