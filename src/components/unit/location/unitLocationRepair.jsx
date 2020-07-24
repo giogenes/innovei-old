@@ -91,15 +91,6 @@ class UnitLocationRepair extends Component {
     return (
       <div>
         <div className="bg-light p-3 border rounded mb-3">
-          <h4>Consumed Parts</h4>
-          <BootstrapTable
-            keyField={"_id"}
-            data={consumedParts}
-            bordered={false}
-            columns={this.consumedPartsColumns}
-          />
-        </div>
-        <div className="bg-light p-3 border rounded">
           <ToolkitProvider
             keyField="_id"
             data={availableParts}
@@ -120,6 +111,15 @@ class UnitLocationRepair extends Component {
               </div>
             )}
           </ToolkitProvider>
+        </div>
+        <div className="bg-light p-3 border rounded">
+          <h4>Consumed Parts</h4>
+          <BootstrapTable
+            keyField={"_id"}
+            data={consumedParts}
+            bordered={false}
+            columns={this.consumedPartsColumns}
+          />
         </div>
       </div>
     );

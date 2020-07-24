@@ -8,6 +8,8 @@ const UnitLocation = ({
   availableParts,
   onLocationChange,
   onLocationSelectChange,
+  onAddPart,
+  onRemovePart,
   locationSelectValue,
 }) => {
   const { parts: consumedParts } = unit;
@@ -20,8 +22,8 @@ const UnitLocation = ({
           <UnitLocationRepair
             consumedParts={consumedParts}
             availableParts={availableParts}
-            onAddPart={this.props.onAddPart}
-            onRemovePart={this.props.onRemovePart}
+            onAddPart={onAddPart}
+            onRemovePart={onRemovePart}
           />
         )}
         <hr />
