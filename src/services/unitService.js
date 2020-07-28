@@ -118,14 +118,16 @@ const units = [
     timeline: [
       {
         type: "note",
-        author: "Giovanni Leon",
         date: new Date(2020, 9, 17, 3, 24, 0),
         location: {
           _id: "1b0b1fe9-3a7f-41a9-88d9-8085cb85d970",
           name: "A Stock",
           super: {},
         },
-        content: "Unit was fixed and put into A Stock. Ready to sell",
+        content: {
+          author: "Giovanni Leon",
+          note: "Unit was fixed and put into A Stock. Ready to sell",
+        },
       },
       {
         type: "movement",
@@ -137,7 +139,6 @@ const units = [
         },
       },
       {
-        author: "Eddie Delgado",
         type: "note",
         date: new Date(2020, 10, 17, 3, 24, 0),
         location: {
@@ -145,10 +146,12 @@ const units = [
           name: "Under Repair",
           super: {},
         },
-        content: "Under Repair",
+        content: {
+          author: "Giovanni Leon",
+          note: "Unit was fixed and put into A Stock. Ready to sell",
+        },
       },
       {
-        author: "Eddie Delgado",
         type: "note",
         date: new Date(2020, 11, 17, 12, 0, 0),
         location: {
@@ -160,7 +163,10 @@ const units = [
             super: {},
           },
         },
-        content: "Needs gimbal. Pending parts",
+        content: {
+          author: "Giovanni Leon",
+          note: "Unit was fixed and put into A Stock. Ready to sell",
+        },
       },
     ],
   },

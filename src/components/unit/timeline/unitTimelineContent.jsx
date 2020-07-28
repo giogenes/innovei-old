@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import * as dateService from "../../../services/dateService";
+import UnitTimelineNote from "./unitTimelineNote";
+import UnitTimelineMovement from "./unitTimelineMovement";
+import UnitTimelinePart from "./unitTimelinePart";
 
 const UnitTimelineContent = ({ timeline }) => {
   return (
@@ -12,45 +14,13 @@ const UnitTimelineContent = ({ timeline }) => {
       {timeline.map((t) => (
         <div key={t.date + t.content}>
           {t.type === "note" && (
-            <div key={t.date + t.content} className="card bg-light">
-              <div className="card-body">
-                <h5 style={{ marginBottom: "0" }}>
-                  {t.location.name} -{" "}
-                  <span className="text-muted" style={{ fontWeight: "normal" }}>
-                    {t.author}
-                  </span>
-                </h5>
-                <h5 className="card-title text-muted lead">
-                  <small>
-                    {dateService.getDay(t.date)}, {dateService.getMonth(t.date)}{" "}
-                    {dateService.getDate(t.date)}, {dateService.getYear(t.date)}{" "}
-                    at {dateService.getTime(t.date)}
-                  </small>
-                </h5>
-                <p className="card-text">{t.content}</p>
-              </div>
-            </div>
+            <UnitTimelineNote key={t.date + t.content} t={t} />
           )}
           {t.type === "movement" && (
-            <div key={t.date + t.content} className="card bg-dark ml-5 mr-5">
-              <div className="">
-                <h5
-                  className="text-center pt-2 text-white"
-                  style={{ marginBottom: "0" }}
-                >
-                  Move to {t.location.name}
-                </h5>
-                <h5 className="text-center card-title text-light font-light-weight">
-                  <small>
-                    {dateService.getMonth(t.date)} {dateService.getDate(t.date)}
-                    , {dateService.getYear(t.date)}
-                    {", "}
-                    {dateService.getTime(t.date)}
-                  </small>
-                </h5>
-                <p className="card-text">{t.content}</p>
-              </div>
-            </div>
+            <UnitTimelineMovement key={t.date + t.content} t={t} />
+          )}
+          {t.type === "part" && (
+            <UnitTimelinePart key={t.date + t.content} t={t} />
           )}
         </div>
       ))}

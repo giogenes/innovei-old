@@ -100,16 +100,21 @@ class Unit extends Component {
 
   handleTimelineSubmit = (event) => {
     event.preventDefault();
-    let unit = { ...this.state.unit };
-    let timelineItem = {};
+    const unit = { ...this.state.unit };
 
-    timelineItem.author = "Giovanni Leon";
-    timelineItem.type = "note";
-    timelineItem.date = new Date();
-    timelineItem.location = this.state.unit.ticket.location;
-    timelineItem.content = this.state.timelineInputValue;
+    unit.timeline = [
+      {
+        type: "note",
+        date: new Date(),
+        location: unit.ticket.location,
+        content: {
+          author: "Giovanni Leon",
+          note: this.state.timelineInputValue,
+        },
+      },
+      ...unit.timeline,
+    ];
 
-    unit.timeline.unshift(timelineItem);
     this.setState({ unit, timelineInputValue: "" });
   };
 
@@ -148,7 +153,23 @@ class Unit extends Component {
       }
       return p;
     });
-    console.log(newAvailableParts);
+
+    newUnit = {
+      ...newUnit,
+      timeline: [
+        {
+          type: "part",
+          date: new Date(),
+          location: newUnit.ticket.location,
+          content: {
+            partName: this.state.unit.parts[consumedPartIndex].name,
+            action: "Removed",
+          },
+        },
+        ...newUnit.timeline,
+      ],
+    };
+
     this.setState({ unit: newUnit, availableParts: newAvailableParts });
   };
 
@@ -160,7 +181,6 @@ class Unit extends Component {
     if (this.state.availableParts[availablePartIndex].amount < 1) return;
     const consumedPartExists =
       this.state.unit.parts.filter((part) => part._id === partId).length > 0;
-    console.log(consumedPartExists);
     let newUnit = {};
     if (consumedPartExists) {
       newUnit = {
@@ -187,6 +207,23 @@ class Unit extends Component {
       }
       return part;
     });
+
+    newUnit = {
+      ...newUnit,
+      timeline: [
+        {
+          type: "part",
+          date: new Date(),
+          location: newUnit.ticket.location,
+          content: {
+            partName: this.state.availableParts[availablePartIndex].name,
+            action: "Added",
+          },
+        },
+        ...newUnit.timeline,
+      ],
+    };
+
     this.setState({ unit: newUnit, availableParts: newAvailableParts });
   };
 
