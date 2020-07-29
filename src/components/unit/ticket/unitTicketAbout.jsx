@@ -8,10 +8,10 @@ const UnitTicketAbout = ({ unit }) => {
         {ticket.type} <span className="unbold">{ticket.id}</span>
       </h2>
       <div className="row pt-4">
-        <div className="col-md-4">
+        <div className="col-md-4 container">
           <img
             alt=""
-            src="https://res.cloudinary.com/djuytm4lm/image/upload/v1595347194/shipping-box_kwg7wz.png"
+            src="https://res.cloudinary.com/djuytm4lm/image/upload/v1595996731/powerray_h4qo7n.svg"
             className="rounded mx-auto d-block pb-3"
           />
         </div>

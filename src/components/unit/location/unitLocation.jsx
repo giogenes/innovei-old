@@ -2,6 +2,7 @@ import React from "react";
 import UnitLocationRepair from "./unitLocationRepair";
 import ChangeLocationForm from "./changeLocationForm";
 import UnitLocationHeader from "./unitLocationHeader";
+import UnitLocationDiagnostics from "./unitLocationDiagnostics";
 
 const UnitLocation = ({
   unit,
@@ -25,6 +26,9 @@ const UnitLocation = ({
             onAddPart={onAddPart}
             onRemovePart={onRemovePart}
           />
+        )}
+        {unit.ticket.location.super.name === "Under Diagnostics" && (
+          <UnitLocationDiagnostics name={unit.ticket.location.name} />
         )}
         <hr />
         <ChangeLocationForm

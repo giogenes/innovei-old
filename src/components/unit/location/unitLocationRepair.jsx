@@ -3,6 +3,9 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as icons from "@fortawesome/free-solid-svg-icons";
+
 const { SearchBar } = Search;
 
 class UnitLocationRepair extends Component {
@@ -17,6 +20,12 @@ class UnitLocationRepair extends Component {
     return "btn btn-success";
   }
 
+  getSortIcon = (order) => {
+    if (order === "asc") return <FontAwesomeIcon icon={icons.faSortUp} />;
+    if (order === "desc") return <FontAwesomeIcon icon={icons.faSortDown} />;
+    return <FontAwesomeIcon icon={icons.faSort} />;
+  };
+
   consumedPartsColumns = [
     {
       dataField: "name",
@@ -27,7 +36,7 @@ class UnitLocationRepair extends Component {
       text: "Part Number",
     },
     {
-      dataField: "amount",
+      dataField: "amount ",
       text: "Amount",
     },
     {
@@ -52,15 +61,21 @@ class UnitLocationRepair extends Component {
   availablePartsColumns = [
     {
       dataField: "name",
-      text: "Part Name",
+      text: "Part Name ",
+      sort: true,
+      sortCaret: this.getSortIcon,
     },
     {
       dataField: "pn",
-      text: "Part Number",
+      text: "Part Number ",
+      sort: true,
+      sortCaret: this.getSortIcon,
     },
     {
       dataField: "amount",
-      text: "Amount",
+      text: "Amount ",
+      sort: true,
+      sortCaret: this.getSortIcon,
     },
     {
       dataField: "options",

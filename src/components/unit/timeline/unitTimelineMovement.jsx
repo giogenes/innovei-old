@@ -12,7 +12,7 @@ const UnitTimelineMovement = ({ t }) => {
           className="text-center pt-2 text-white"
           style={{ marginBottom: "0" }}
         >
-          <FontAwesomeIcon icon={icons.faCompass} /> Move to {t.location.name}
+          <FontAwesomeIcon icon={icons.faCompass} /> Moved to {t.location.name}
         </h5>
         <h5 className="text-center card-title text-light font-light-weight">
           <small>
