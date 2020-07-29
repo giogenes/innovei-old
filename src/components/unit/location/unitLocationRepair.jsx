@@ -36,7 +36,7 @@ class UnitLocationRepair extends Component {
       text: "Part Number",
     },
     {
-      dataField: "amount ",
+      dataField: "amount",
       text: "Amount",
     },
     {
@@ -103,6 +103,7 @@ class UnitLocationRepair extends Component {
   };
   render() {
     const { availableParts, consumedParts } = this.props;
+
     return (
       <div>
         <div className="bg-light p-3 border rounded mb-3">

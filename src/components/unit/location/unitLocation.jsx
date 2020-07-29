@@ -3,6 +3,7 @@ import UnitLocationRepair from "./unitLocationRepair";
 import ChangeLocationForm from "./changeLocationForm";
 import UnitLocationHeader from "./unitLocationHeader";
 import UnitLocationDiagnostics from "./unitLocationDiagnostics";
+import UnitLocationTesting from "./unitLocationTesting";
 
 const UnitLocation = ({
   unit,
@@ -29,6 +30,9 @@ const UnitLocation = ({
         )}
         {unit.ticket.location.super.name === "Under Diagnostics" && (
           <UnitLocationDiagnostics name={unit.ticket.location.name} />
+        )}
+        {unit.ticket.location.name === "Testing" && (
+          <UnitLocationTesting unit={unit} />
         )}
         <hr />
         <ChangeLocationForm
