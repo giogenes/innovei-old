@@ -14,6 +14,7 @@ const UnitTabsContent = ({
   locationSelectValue,
   onRemovePart,
   onAddPart,
+  errors,
 }) => {
   return (
     <div className="unit-tab-content pt-5">
@@ -45,6 +46,7 @@ const UnitTabsContent = ({
             unit={unit}
             availableParts={availableParts}
             onLocationSelectChange={onLocationSelectChange}
+            errors={errors}
           />
         )}
       />

@@ -2,7 +2,13 @@ import React from "react";
 import UnitTimelineForm from "./unitTimelineForm";
 import UnitTimelineContent from "./unitTimelineContent";
 
-const unitTimeline = ({ unit, timelineInputValue, onChange, onSubmit }) => {
+const unitTimeline = ({
+  unit,
+  timelineInputValue,
+  onChange,
+  onSubmit,
+  errors,
+}) => {
   const { timeline } = unit;
 
   return (
@@ -12,6 +18,7 @@ const unitTimeline = ({ unit, timelineInputValue, onChange, onSubmit }) => {
         timelineInputValue={timelineInputValue}
         onChange={onChange}
         onSubmit={onSubmit}
+        errors={errors}
       />
       <UnitTimelineContent timeline={timeline} />
     </div>

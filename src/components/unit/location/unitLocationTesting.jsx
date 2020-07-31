@@ -27,7 +27,6 @@ class UnitLocationTesting extends Component {
     const procedure = TestProcedureService.getTestProcedureByUnitTypeId(
       this.props.unit.type._id
     ).procedure;
-    console.log(procedure);
 
     return (
       <BootstrapTable

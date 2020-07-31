@@ -2,6 +2,20 @@ import React, { Fragment } from "react";
 
 const UnitTicketAbout = ({ unit }) => {
   const { ticket } = unit;
+  let imageSrc =
+    "https://res.cloudinary.com/djuytm4lm/image/upload/v1595347194/shipping-box_kwg7wz.png";
+  if (unit.type.pn === "PEG10") {
+    imageSrc =
+      "https://res.cloudinary.com/djuytm4lm/image/upload/v1596136939/powervision-01_ms7dxp.svg";
+  }
+  if (
+    unit.type.pn === "PRW10" ||
+    unit.type.pn === "PRE10" ||
+    unit.type.pn === "PRS10"
+  )
+    imageSrc =
+      "https://res.cloudinary.com/djuytm4lm/image/upload/v1596229595/powervision-02_movhhi.svg";
+
   return (
     <Fragment>
       <h2>
@@ -9,11 +23,7 @@ const UnitTicketAbout = ({ unit }) => {
       </h2>
       <div className="row pt-4">
         <div className="col-md-4 container">
-          <img
-            alt=""
-            src="https://res.cloudinary.com/djuytm4lm/image/upload/v1595996731/powerray_h4qo7n.svg"
-            className="rounded mx-auto d-block pb-3"
-          />
+          <img alt="" src={imageSrc} className="rounded mx-auto d-block pb-3" />
         </div>
         <div className="col-lg-8">
           <div className="row">

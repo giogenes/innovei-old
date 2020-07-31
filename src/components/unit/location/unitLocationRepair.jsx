@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as icons from "@fortawesome/free-solid-svg-icons";
-
-const { SearchBar } = Search;
+import TraditionalRepair from "./traditionalRepair";
+import RepairTypeButtons from "./repairTypeButtons";
+import NonStandardRepair from "./nonStandardRepair";
 
 class UnitLocationRepair extends Component {
+  state = {
+    repairType: "traditional",
+  };
+
   addPartsClasses(id) {
     const index = this.props.availableParts.findIndex(
       (part) => part._id === id
@@ -20,10 +22,24 @@ class UnitLocationRepair extends Component {
     return "btn btn-success";
   }
 
+  addRepairTypeButtonClasses = (type) => {
+    if (this.state.repairType === type) return "btn btn-secondary mb-2 ml-2";
+
+    return "btn btn-secondary mb-2 ml-2 disabled";
+  };
+
   getSortIcon = (order) => {
     if (order === "asc") return <FontAwesomeIcon icon={icons.faSortUp} />;
     if (order === "desc") return <FontAwesomeIcon icon={icons.faSortDown} />;
     return <FontAwesomeIcon icon={icons.faSort} />;
+  };
+
+  handleTraditionalRepairClick = (e) => {
+    this.setState({ repairType: "traditional" });
+  };
+
+  handleNonStandardRepairClick = (e) => {
+    this.setState({ repairType: "nonStandard" });
   };
 
   consumedPartsColumns = [
@@ -101,42 +117,28 @@ class UnitLocationRepair extends Component {
     alwaysShowAllBtns: true,
     hideSizePerPage: true,
   };
+
   render() {
     const { availableParts, consumedParts } = this.props;
 
     return (
       <div>
-        <div className="bg-light p-3 border rounded mb-3">
-          <ToolkitProvider
-            keyField="_id"
-            data={availableParts}
-            columns={this.availablePartsColumns}
-            search
-          >
-            {(props) => (
-              <div>
-                <h4>Available Parts</h4>
+        <RepairTypeButtons
+          onTraditionalRepairClick={this.handleTraditionalRepairClick}
+          onNonStandardRepairClick={this.handleNonStandardRepairClick}
+          repairTypeButtonClasses={this.addRepairTypeButtonClasses}
+        />
 
-                <SearchBar {...props.searchProps} />
-                <hr />
-                <BootstrapTable
-                  {...props.baseProps}
-                  bordered={false}
-                  pagination={paginationFactory(this.paginationOptions)}
-                />
-              </div>
-            )}
-          </ToolkitProvider>
-        </div>
-        <div className="bg-light p-3 border rounded">
-          <h4>Consumed Parts</h4>
-          <BootstrapTable
-            keyField={"_id"}
-            data={consumedParts}
-            bordered={false}
-            columns={this.consumedPartsColumns}
+        {this.state.repairType === "traditional" && (
+          <TraditionalRepair
+            availablePartsColumns={this.availablePartsColumns}
+            availableParts={availableParts}
+            consumedParts={consumedParts}
+            consumedPartsColumns={this.consumedPartsColumns}
+            paginationOptions={this.paginationOptions}
           />
-        </div>
+        )}
+        {this.state.repairType === "nonStandard" && <NonStandardRepair />}
       </div>
     );
   }

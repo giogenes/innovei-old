@@ -1,41 +1,61 @@
-import React, { Fragment } from "react";
+import React, { Component } from "react";
 
-const ChangeLocationForm = ({
-  onLocationChange,
-  locationSelectValue,
-  onLocationSelectChange,
-  unit,
-}) => {
-  const nextLocations = [
-    { _id: "", name: " - ", types: ["New Product", "RMA", "RGA"] },
-    ...unit.ticket.location.next,
-  ];
+class ChangeLocationForm extends Component {
+  submitButtonClasses() {
+    if (this.props.errors.locationSelectValue)
+      return "btn btn-primary mt-2 disabled";
+    return "btn btn-primary mt-2";
+  }
 
-  return (
-    <div className="col-md-4">
-      <form onSubmit={onLocationChange}>
-        <h3 className="unbold">Change Location</h3>
-        <div className="form-group">
-          <select
-            value={locationSelectValue}
-            onChange={onLocationSelectChange}
-            className="form-control"
-          >
-            {nextLocations.map((n) => (
-              <Fragment key={n._id}>
-                {n.types.filter((type) => type === unit.ticket.type)[0] && (
-                  <option value={n._id}>{n.name}</option>
-                )}
-              </Fragment>
-            ))}
-          </select>
-          <button type="submit" className="btn btn-primary mt-2">
+  selectClasses() {
+    if (this.props.errors.locationSelectValue) return "form-control is-invalid";
+    return "form-control mt-2";
+  }
+
+  render() {
+    const {
+      onLocationChange,
+      locationSelectValue,
+      onLocationSelectChange,
+      errors,
+    } = this.props;
+
+    const nextLocations = [
+      { _id: "", name: " - ", types: ["New Product", "RMA", "RGA"] },
+      ...this.props.unit.ticket.location.next,
+    ];
+
+    const filteredLocations = nextLocations.filter(
+      (location) =>
+        location.types.filter((type) => type === this.props.unit.ticket.type)
+          .length > 0
+    );
+
+    return (
+      <div className="col-md-4 pl-0">
+        <form onSubmit={onLocationChange}>
+          <h3 className="unbold">Change Location</h3>
+          <div className="form-group">
+            <select
+              value={locationSelectValue}
+              onChange={onLocationSelectChange}
+              className={this.selectClasses()}
+            >
+              {filteredLocations.map((n) => (
+                <option key={n._id} value={n._id}>
+                  {n.name}
+                </option>
+              ))}
+            </select>
+            <div className="invalid-feedback">{errors.locationSelectValue}</div>
+          </div>
+          <button type="submit" className={this.submitButtonClasses()}>
             Enter
           </button>
-        </div>
-      </form>
-    </div>
-  );
-};
+        </form>
+      </div>
+    );
+  }
+}
 
 export default ChangeLocationForm;

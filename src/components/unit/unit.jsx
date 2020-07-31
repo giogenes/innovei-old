@@ -6,6 +6,7 @@ import UnitTabsContent from "./unitTabsContent";
 import UnitTimeline from "./timeline/unitTimeline";
 import * as UnitLocationService from "../../services/unitLocationService";
 import * as PartService from "../../services/partService";
+import Joi from "@hapi/joi";
 
 class Unit extends Component {
   state = {
@@ -44,6 +45,7 @@ class Unit extends Component {
         bay: null,
       },
       parts: [],
+      tests: [],
       timeline: [],
     },
 
@@ -51,6 +53,8 @@ class Unit extends Component {
     timelineInputValue: "",
     locationSelectValue: "",
     availableParts: [],
+    partsModified: false,
+    errors: {},
   };
 
   tabs = [
@@ -58,6 +62,26 @@ class Unit extends Component {
     { key: "location", name: "Location" },
     { key: "parts", name: "Parts" },
   ];
+
+  schema = Joi.object({
+    timelineInputValue: Joi.string().min(5).max(140).label("Timeline Form"),
+    locationSelectValue: Joi.string().min(1).label("Location"),
+  });
+
+  validate(key, value) {
+    const errors = this.state.errors;
+    const validation = { [key]: value };
+    const { error } = this.schema.validate(validation);
+    if (!error) {
+      errors[key] = "";
+      this.setState({ errors });
+      return errors[key];
+    }
+    errors[key] = error.details[0].message;
+    this.setState({ errors });
+
+    return errors[key];
+  }
 
   componentDidMount() {
     const { match, history } = this.props;
@@ -74,11 +98,28 @@ class Unit extends Component {
   };
 
   handleTimelineChange = (event) => {
-    this.setState({ timelineInputValue: event.target.value });
+    const value = event.target.value;
+    this.validate("timelineInputValue", value);
+    this.setState({ timelineInputValue: value });
   };
 
   handleLocationChange = (event) => {
     event.preventDefault();
+    const errors = this.validate(
+      "locationSelectValue",
+      this.state.locationSelectValue
+    );
+    if (errors) return;
+    if (
+      this.state.unit.ticket.location.name === "Under Repair" &&
+      !this.state.partsModified
+    ) {
+      const e = this.state.errors;
+      e.locationSelectValue =
+        "Please either add a non standard repair or add/remove a part to continue";
+      this.setState({ errors: e });
+      return;
+    }
     const unit = { ...this.state.unit };
     unit.ticket.location = UnitLocationService.getUnitLocation(
       this.state.locationSelectValue
@@ -91,15 +132,26 @@ class Unit extends Component {
       },
       ...unit.timeline,
     ];
-    this.setState({ unit });
+
+    if (this.state.unit.ticket.location.name === "Under Repair")
+      this.setState({ partsModified: false });
+
+    this.setState({ unit, locationSelectValue: "" });
   };
 
   handleLocationSelectChange = (event) => {
-    this.setState({ locationSelectValue: event.target.value });
+    const value = event.target.value;
+    this.validate("locationSelectValue", value);
+    this.setState({ locationSelectValue: value });
   };
 
   handleTimelineSubmit = (event) => {
     event.preventDefault();
+    const errors = this.validate(
+      "timelineInputValue",
+      this.state.timelineInputValue
+    );
+    if (errors) return;
     const unit = { ...this.state.unit };
 
     unit.timeline = [
@@ -169,8 +221,12 @@ class Unit extends Component {
         ...newUnit.timeline,
       ],
     };
-
-    this.setState({ unit: newUnit, availableParts: newAvailableParts });
+    const partsModified = true;
+    this.setState({
+      unit: newUnit,
+      availableParts: newAvailableParts,
+      partsModified,
+    });
   };
 
   handleAddPart = (partId, e) => {
@@ -224,7 +280,12 @@ class Unit extends Component {
       ],
     };
 
-    this.setState({ unit: newUnit, availableParts: newAvailableParts });
+    const partsModified = true;
+    this.setState({
+      unit: newUnit,
+      availableParts: newAvailableParts,
+      partsModified,
+    });
   };
 
   render() {
@@ -251,6 +312,7 @@ class Unit extends Component {
               id={this.props.match.params.id}
               unit={unit}
               availableParts={availableParts}
+              errors={this.state.errors}
             />
           </div>
           <div className="col-md-3"></div>
@@ -261,6 +323,7 @@ class Unit extends Component {
             onChange={this.handleTimelineChange}
             onSubmit={this.handleTimelineSubmit}
             unit={this.state.unit}
+            errors={this.state.errors}
           />
         </div>
       </div>

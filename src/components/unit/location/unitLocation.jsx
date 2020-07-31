@@ -13,6 +13,7 @@ const UnitLocation = ({
   onAddPart,
   onRemovePart,
   locationSelectValue,
+  errors,
 }) => {
   const { parts: consumedParts } = unit;
 
@@ -40,6 +41,7 @@ const UnitLocation = ({
           locationSelectValue={locationSelectValue}
           onLocationSelectChange={onLocationSelectChange}
           unit={unit}
+          errors={errors}
         />
       </div>
     </div>
