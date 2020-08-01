@@ -49,10 +49,12 @@ class Unit extends Component {
       timeline: [],
     },
 
-    currentTabKey: "ticket",
     timelineInputValue: "",
     locationSelectValue: "",
+    repairDiscriptionValue: "",
+    repairTimeValue: "",
     availableParts: [],
+    currentTabKey: "ticket",
     partsModified: false,
     errors: {},
   };
@@ -66,6 +68,13 @@ class Unit extends Component {
   schema = Joi.object({
     timelineInputValue: Joi.string().min(5).max(140).label("Timeline Form"),
     locationSelectValue: Joi.string().min(1).label("Location"),
+    repairDiscriptionValue: Joi.string()
+      .min(5)
+      .max(140)
+      .label("Repair Description"),
+    repairTimeValue: Joi.string()
+      .regex(new RegExp("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"))
+      .error(new Error("Repair Time must be in the format 00:00")),
   });
 
   validate(key, value) {
@@ -77,7 +86,8 @@ class Unit extends Component {
       this.setState({ errors });
       return errors[key];
     }
-    errors[key] = error.details[0].message;
+    console.log(error);
+    errors[key] = error.message;
     this.setState({ errors });
 
     return errors[key];
@@ -97,10 +107,28 @@ class Unit extends Component {
     this.setState({ currentTabKey: key });
   };
 
+  handleRepairDiscriptionChange = (event) => {
+    const value = event.target.value;
+    this.validate("repairDiscriptionValue", this.state.repairDiscriptionValue);
+    this.setState({ repairDiscriptionValue: value });
+  };
+
+  handleRepairTimeChange = (event) => {
+    const value = event.target.value;
+    this.validate("repairTimeValue", value);
+    this.setState({ repairTimeValue: value });
+  };
+
   handleTimelineChange = (event) => {
     const value = event.target.value;
     this.validate("timelineInputValue", value);
     this.setState({ timelineInputValue: value });
+  };
+
+  handleLocationSelectChange = (event) => {
+    const value = event.target.value;
+    this.validate("locationSelectValue", value);
+    this.setState({ locationSelectValue: value });
   };
 
   handleLocationChange = (event) => {
@@ -137,12 +165,6 @@ class Unit extends Component {
       this.setState({ partsModified: false });
 
     this.setState({ unit, locationSelectValue: "" });
-  };
-
-  handleLocationSelectChange = (event) => {
-    const value = event.target.value;
-    this.validate("locationSelectValue", value);
-    this.setState({ locationSelectValue: value });
   };
 
   handleTimelineSubmit = (event) => {
@@ -313,6 +335,10 @@ class Unit extends Component {
               unit={unit}
               availableParts={availableParts}
               errors={this.state.errors}
+              repairDiscriptionValue={this.state.repairDiscriptionValue}
+              onRepairDiscriptionChange={this.handleRepairDiscriptionChange}
+              repairTimeValue={this.state.repairTimeValue}
+              onRepairTimeChange={this.handleRepairTimeChange}
             />
           </div>
           <div className="col-md-3"></div>

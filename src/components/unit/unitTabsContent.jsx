@@ -15,6 +15,10 @@ const UnitTabsContent = ({
   onRemovePart,
   onAddPart,
   errors,
+  repairDiscriptionValue,
+  onRepairDiscriptionChange,
+  repairTimeValue,
+  onRepairTimeChange,
 }) => {
   return (
     <div className="unit-tab-content pt-5">
@@ -47,6 +51,10 @@ const UnitTabsContent = ({
             availableParts={availableParts}
             onLocationSelectChange={onLocationSelectChange}
             errors={errors}
+            repairDiscriptionValue={repairDiscriptionValue}
+            onRepairDiscriptionChange={onRepairDiscriptionChange}
+            repairTimeValue={repairTimeValue}
+            onRepairTimeChange={onRepairTimeChange}
           />
         )}
       />

@@ -119,7 +119,15 @@ class UnitLocationRepair extends Component {
   };
 
   render() {
-    const { availableParts, consumedParts } = this.props;
+    const {
+      availableParts,
+      consumedParts,
+      repairDiscriptionValue,
+      onRepairDiscriptionChange,
+      repairTimeValue,
+      onRepairTimeChange,
+      errors,
+    } = this.props;
 
     return (
       <div>
@@ -138,7 +146,15 @@ class UnitLocationRepair extends Component {
             paginationOptions={this.paginationOptions}
           />
         )}
-        {this.state.repairType === "nonStandard" && <NonStandardRepair />}
+        {this.state.repairType === "nonStandard" && (
+          <NonStandardRepair
+            repairDiscriptionValue={repairDiscriptionValue}
+            onRepairDiscriptionChange={onRepairDiscriptionChange}
+            repairTimeValue={repairTimeValue}
+            onRepairTimeChange={onRepairTimeChange}
+            errors={errors}
+          />
+        )}
       </div>
     );
   }
