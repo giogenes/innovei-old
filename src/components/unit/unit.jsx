@@ -6,6 +6,7 @@ import UnitTabsContent from "./unitTabsContent";
 import UnitTimeline from "./timeline/unitTimeline";
 import * as UnitLocationService from "../../services/unitLocationService";
 import * as PartService from "../../services/partService";
+import * as TestProcedureService from "../../services/testProcedureService";
 import Joi from "@hapi/joi";
 
 class Unit extends Component {
@@ -56,6 +57,9 @@ class Unit extends Component {
     availableParts: [],
     currentTabKey: "ticket",
     partsModified: false,
+    unitPassed: false,
+    testAdded: false,
+    selectedTestItems: [],
     errors: {},
   };
 
@@ -107,6 +111,33 @@ class Unit extends Component {
     this.setState({ currentTabKey: key });
   };
 
+  handleSelectTestItem = (row, isSelect) => {
+    if (isSelect) {
+      this.setState(() => ({
+        selectedTestItems: [...this.state.selectedTestItems, row._id],
+      }));
+    } else {
+      this.setState(() => ({
+        selectedTestItems: this.state.selectedTestItems.filter(
+          (x) => x !== row._id
+        ),
+      }));
+    }
+  };
+
+  handleSelectAllTestItems = (isSelect, rows) => {
+    const ids = rows.map((r) => r._id);
+    if (isSelect) {
+      this.setState(() => ({
+        selectedTestItems: ids,
+      }));
+    } else {
+      this.setState(() => ({
+        selectedTestItems: [],
+      }));
+    }
+  };
+
   handleRepairDiscriptionChange = (event) => {
     const value = event.target.value;
     this.validate("repairDiscriptionValue", this.state.repairDiscriptionValue);
@@ -148,10 +179,37 @@ class Unit extends Component {
       this.setState({ errors: e });
       return;
     }
+    console.log(
+      UnitLocationService.getUnitLocation(this.state.locationSelectValue).name
+    );
+    if (
+      UnitLocationService.getUnitLocation(this.state.locationSelectValue)
+        .name === "Ready to Ship" &&
+      !this.state.unitPassed
+    ) {
+      const e = this.state.errors;
+      e.locationSelectValue =
+        "It looks like this unit failed a test or two! It cannot ship without passing all tests";
+      this.setState({ errors: e });
+      return;
+    }
+
+    if (
+      this.state.unit.ticket.location.name === "Testing" &&
+      !this.state.testAdded
+    ) {
+      const e = this.state.errors;
+      e.locationSelectValue =
+        "The unit cannot be moved without a test being added first";
+      this.setState({ errors: e });
+      return;
+    }
+
     const unit = { ...this.state.unit };
-    unit.ticket.location = UnitLocationService.getUnitLocation(
+    const nextLocation = UnitLocationService.getUnitLocation(
       this.state.locationSelectValue
     );
+    unit.ticket.location = nextLocation;
     unit.timeline = [
       {
         type: "movement",
@@ -161,8 +219,18 @@ class Unit extends Component {
       ...unit.timeline,
     ];
 
-    if (this.state.unit.ticket.location.name === "Under Repair")
+    if (nextLocation.name === "Under Repair") {
       this.setState({ partsModified: false });
+
+      unit.timeline = [
+        {
+          type: "repair",
+          date: new Date(),
+          items: [],
+        },
+        ...unit.timeline,
+      ];
+    }
 
     this.setState({ unit, locationSelectValue: "" });
   };
@@ -174,7 +242,58 @@ class Unit extends Component {
       this.state.errors.repairTimeValue
     )
       return;
-    console.log("non standard");
+
+    let unit = this.state.unit;
+    let repairIndex = unit.timeline.findIndex((item) => item.type === "repair");
+    unit.timeline[repairIndex].items = [
+      {
+        type: "nonStandardRepair",
+        date: new Date(),
+        time: this.state.repairTimeValue,
+        description: this.state.repairDiscriptionValue,
+      },
+      ...unit.timeline[repairIndex].items,
+    ];
+    unit.timeline[repairIndex].date = new Date();
+    this.setState({ unit, partsModified: true });
+  };
+
+  handleTestSubmit = (event) => {
+    let unit = {};
+    if (
+      this.state.selectedTestItems.length !==
+      TestProcedureService.getTestProcedureByUnitTypeId(
+        this.state.unit.type._id
+      ).procedure.length
+    ) {
+      unit = {
+        ...this.state.unit,
+        timeline: [
+          {
+            type: "test",
+            date: new Date(),
+            selectedItems: this.state.selectedTestItems,
+            passed: false,
+          },
+          ...this.state.unit.timeline,
+        ],
+      };
+    } else {
+      unit = {
+        ...this.state.unit,
+        timeline: [
+          {
+            type: "test",
+            date: new Date(),
+            selectedItems: this.state.selectedTestItems,
+            passed: true,
+          },
+          ...this.state.unit.timeline,
+        ],
+      };
+      this.setState({ unitPassed: true });
+    }
+    this.setState({ unit, selectedTestItems: [], testAdded: true });
   };
 
   handleTimelineSubmit = (event) => {
@@ -190,7 +309,6 @@ class Unit extends Component {
       {
         type: "note",
         date: new Date(),
-        location: unit.ticket.location,
         content: {
           author: "Giovanni Leon",
           note: this.state.timelineInputValue,
@@ -238,21 +356,19 @@ class Unit extends Component {
       return p;
     });
 
-    newUnit = {
-      ...newUnit,
-      timeline: [
-        {
-          type: "part",
-          date: new Date(),
-          location: newUnit.ticket.location,
-          content: {
-            partName: this.state.unit.parts[consumedPartIndex].name,
-            action: "Removed",
-          },
-        },
-        ...newUnit.timeline,
-      ],
-    };
+    let repairIndex = newUnit.timeline.findIndex(
+      (item) => item.type === "repair"
+    );
+    newUnit.timeline[repairIndex].items = [
+      {
+        type: "partRemoved",
+        date: new Date(),
+        partName: this.state.unit.parts[consumedPartIndex].name,
+      },
+      ...newUnit.timeline[repairIndex].items,
+    ];
+    newUnit.timeline[repairIndex].date = new Date();
+
     const partsModified = true;
     this.setState({
       unit: newUnit,
@@ -296,21 +412,18 @@ class Unit extends Component {
       return part;
     });
 
-    newUnit = {
-      ...newUnit,
-      timeline: [
-        {
-          type: "part",
-          date: new Date(),
-          location: newUnit.ticket.location,
-          content: {
-            partName: this.state.availableParts[availablePartIndex].name,
-            action: "Added",
-          },
-        },
-        ...newUnit.timeline,
-      ],
-    };
+    let repairIndex = newUnit.timeline.findIndex(
+      (item) => item.type === "repair"
+    );
+    newUnit.timeline[repairIndex].items = [
+      {
+        type: "partAdded",
+        date: new Date(),
+        partName: this.state.availableParts[availablePartIndex].name,
+      },
+      ...newUnit.timeline[repairIndex].items,
+    ];
+    newUnit.timeline[repairIndex].date = new Date();
 
     const partsModified = true;
     this.setState({
@@ -350,6 +463,10 @@ class Unit extends Component {
               repairTimeValue={this.state.repairTimeValue}
               onRepairTimeChange={this.handleRepairTimeChange}
               onNSRSubmit={this.handleNSRSubmit}
+              selectedTestItems={this.state.selectedTestItems}
+              onSelectTestItem={this.handleSelectTestItem}
+              onSelectAllTestItems={this.handleSelectAllTestItems}
+              onTestSubmit={this.handleTestSubmit}
             />
           </div>
           <div className="col-md-3"></div>

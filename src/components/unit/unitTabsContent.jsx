@@ -20,6 +20,10 @@ const UnitTabsContent = ({
   repairTimeValue,
   onRepairTimeChange,
   onNSRSubmit,
+  selectedTestItems,
+  onSelectTestItem,
+  onSelectAllTestItems,
+  onTestSubmit,
 }) => {
   return (
     <div className="unit-tab-content pt-5">
@@ -57,6 +61,10 @@ const UnitTabsContent = ({
             repairTimeValue={repairTimeValue}
             onRepairTimeChange={onRepairTimeChange}
             onNSRSubmit={onNSRSubmit}
+            selectedTestItems={selectedTestItems}
+            onSelectTestItem={onSelectTestItem}
+            onSelectAllTestItems={onSelectAllTestItems}
+            onTestSubmit={onTestSubmit}
           />
         )}
       />

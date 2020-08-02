@@ -19,6 +19,10 @@ const UnitLocation = ({
   repairTimeValue,
   onRepairTimeChange,
   onNSRSubmit,
+  selectedTestItems,
+  onSelectTestItem,
+  onSelectAllTestItems,
+  onTestSubmit,
 }) => {
   const { parts: consumedParts } = unit;
 
@@ -44,7 +48,13 @@ const UnitLocation = ({
           <UnitLocationDiagnostics name={unit.ticket.location.name} />
         )}
         {unit.ticket.location.name === "Testing" && (
-          <UnitLocationTesting unit={unit} />
+          <UnitLocationTesting
+            unit={unit}
+            selectedTestItems={selectedTestItems}
+            onSelectTestItem={onSelectTestItem}
+            onSelectAllTestItems={onSelectAllTestItems}
+            onTestSubmit={onTestSubmit}
+          />
         )}
         <hr />
         <ChangeLocationForm

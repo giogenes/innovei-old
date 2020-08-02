@@ -6,7 +6,7 @@ const UnitTimelineNote = ({ t }) => {
     <div className="card bg-light">
       <div className="card-body">
         <h5 style={{ marginBottom: "0" }}>
-          {t.location.name} -{" "}
+          Note -{" "}
           <span className="text-muted" style={{ fontWeight: "normal" }}>
             {t.content.author}
           </span>
