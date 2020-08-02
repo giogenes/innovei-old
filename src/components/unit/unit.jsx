@@ -179,9 +179,7 @@ class Unit extends Component {
       this.setState({ errors: e });
       return;
     }
-    console.log(
-      UnitLocationService.getUnitLocation(this.state.locationSelectValue).name
-    );
+
     if (
       UnitLocationService.getUnitLocation(this.state.locationSelectValue)
         .name === "Ready to Ship" &&
@@ -189,7 +187,7 @@ class Unit extends Component {
     ) {
       const e = this.state.errors;
       e.locationSelectValue =
-        "It looks like this unit failed a test or two! It cannot ship without passing all tests";
+        "Looks like this unit failed a test or two! It cannot ship without passing all tests";
       this.setState({ errors: e });
       return;
     }
@@ -293,7 +291,13 @@ class Unit extends Component {
       };
       this.setState({ unitPassed: true });
     }
-    this.setState({ unit, selectedTestItems: [], testAdded: true });
+
+    this.setState({
+      unit,
+      selectedTestItems: [],
+      testAdded: true,
+      errors: { ...this.state.errors, locationSelectValue: "" },
+    });
   };
 
   handleTimelineSubmit = (event) => {
@@ -374,6 +378,7 @@ class Unit extends Component {
       unit: newUnit,
       availableParts: newAvailableParts,
       partsModified,
+      errors: { ...this.state.errors, locationSelectValue: "" },
     });
   };
 
@@ -430,6 +435,7 @@ class Unit extends Component {
       unit: newUnit,
       availableParts: newAvailableParts,
       partsModified,
+      errors: { ...this.state.errors, locationSelectValue: "" },
     });
   };
 
