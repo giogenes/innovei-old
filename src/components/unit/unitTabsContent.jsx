@@ -19,6 +19,7 @@ const UnitTabsContent = ({
   onRepairDiscriptionChange,
   repairTimeValue,
   onRepairTimeChange,
+  onNSRSubmit,
 }) => {
   return (
     <div className="unit-tab-content pt-5">
@@ -55,6 +56,7 @@ const UnitTabsContent = ({
             onRepairDiscriptionChange={onRepairDiscriptionChange}
             repairTimeValue={repairTimeValue}
             onRepairTimeChange={onRepairTimeChange}
+            onNSRSubmit={onNSRSubmit}
           />
         )}
       />

@@ -127,6 +127,7 @@ class UnitLocationRepair extends Component {
       repairTimeValue,
       onRepairTimeChange,
       errors,
+      onNSRSubmit,
     } = this.props;
 
     return (
@@ -153,6 +154,7 @@ class UnitLocationRepair extends Component {
             repairTimeValue={repairTimeValue}
             onRepairTimeChange={onRepairTimeChange}
             errors={errors}
+            onNSRSubmit={onNSRSubmit}
           />
         )}
       </div>

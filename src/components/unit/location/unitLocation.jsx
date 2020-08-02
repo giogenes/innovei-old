@@ -18,6 +18,7 @@ const UnitLocation = ({
   onRepairDiscriptionChange,
   repairTimeValue,
   onRepairTimeChange,
+  onNSRSubmit,
 }) => {
   const { parts: consumedParts } = unit;
 
@@ -36,6 +37,7 @@ const UnitLocation = ({
             repairTimeValue={repairTimeValue}
             onRepairTimeChange={onRepairTimeChange}
             errors={errors}
+            onNSRSubmit={onNSRSubmit}
           />
         )}
         {unit.ticket.location.super.name === "Under Diagnostics" && (

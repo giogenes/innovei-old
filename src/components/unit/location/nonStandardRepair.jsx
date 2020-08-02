@@ -12,6 +12,15 @@ class NonStandardRepair extends Component {
     return "form-control";
   }
 
+  submitClasses() {
+    if (
+      this.props.errors.repairTimeValue ||
+      this.props.errors.repairDiscriptionValue
+    )
+      return "btn btn-primary disabled";
+    return "btn btn-primary";
+  }
+
   render() {
     const {
       repairDiscriptionValue,
@@ -19,11 +28,12 @@ class NonStandardRepair extends Component {
       repairTimeValue,
       onRepairTimeChange,
       errors,
+      onNSRSubmit,
     } = this.props;
 
     return (
       <div className="col-md-8 pl-0">
-        <form>
+        <form onSubmit={onNSRSubmit}>
           <div className="form-group">
             <label htmlFor="repairDescription">Repair Description</label>
             <textarea
@@ -50,7 +60,7 @@ class NonStandardRepair extends Component {
             <div className="invalid-feedback">{errors.repairTimeValue}</div>
           </div>
           <div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className={this.submitClasses()}>
               Add Repair
             </button>
           </div>

@@ -167,6 +167,16 @@ class Unit extends Component {
     this.setState({ unit, locationSelectValue: "" });
   };
 
+  handleNSRSubmit = (event) => {
+    event.preventDefault();
+    if (
+      this.state.errors.repairDiscriptionValue ||
+      this.state.errors.repairTimeValue
+    )
+      return;
+    console.log("non standard");
+  };
+
   handleTimelineSubmit = (event) => {
     event.preventDefault();
     const errors = this.validate(
@@ -339,6 +349,7 @@ class Unit extends Component {
               onRepairDiscriptionChange={this.handleRepairDiscriptionChange}
               repairTimeValue={this.state.repairTimeValue}
               onRepairTimeChange={this.handleRepairTimeChange}
+              onNSRSubmit={this.handleNSRSubmit}
             />
           </div>
           <div className="col-md-3"></div>
