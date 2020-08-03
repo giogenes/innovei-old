@@ -10,6 +10,7 @@ class UnitTicketOptions extends Component {
   };
   render() {
     const { id, unit } = this.props;
+
     return (
       <div className="pt-5">
         <h2>Options</h2>

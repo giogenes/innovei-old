@@ -7,6 +7,7 @@ import UnitTimeline from "./timeline/unitTimeline";
 import * as UnitLocationService from "../../services/unitLocationService";
 import * as PartService from "../../services/partService";
 import * as TestProcedureService from "../../services/testProcedureService";
+
 import Joi from "@hapi/joi";
 
 class Unit extends Component {
@@ -69,6 +70,16 @@ class Unit extends Component {
     { key: "parts", name: "Parts" },
   ];
 
+  componentDidMount() {
+    const { match, history } = this.props;
+    const unit = getUnit(match.params.id);
+    if (!unit) history.replace("/not-found");
+    this.setState({ unit });
+    this.setState({
+      availableParts: PartService.getPartsByUnitTypeId(unit.type._id),
+    });
+  }
+
   schema = Joi.object({
     timelineInputValue: Joi.string().min(5).max(140).label("Timeline Form"),
     locationSelectValue: Joi.string().min(1).label("Location"),
@@ -95,16 +106,6 @@ class Unit extends Component {
     this.setState({ errors });
 
     return errors[key];
-  }
-
-  componentDidMount() {
-    const { match, history } = this.props;
-    const unit = getUnit(match.params.id);
-    if (!unit) history.replace("/not-found");
-    this.setState({ unit });
-    this.setState({
-      availableParts: PartService.getPartsByUnitTypeId(unit.type._id),
-    });
   }
 
   handleTabChange = (key) => {
